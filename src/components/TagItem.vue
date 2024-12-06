@@ -1,32 +1,28 @@
-<template>
-    <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-      <el-tab-pane label="User" name="first">
-        <ArticleItem/>
-      </el-tab-pane>
-      
-      <el-tab-pane label="Config" name="second">
-        
-      </el-tab-pane>
-
-      <el-tab-pane label="Role" name="third">
-        
-      </el-tab-pane>
-
-      <el-tab-pane label="Task" name="fourth">
-        
-      </el-tab-pane>
-    </el-tabs>
-  </template>
-  <script lang="ts" setup>
+<script lang="ts" setup>
     import { ref } from 'vue'
     import type { TabsPaneContext } from 'element-plus'
-import ArticleItem from './ArticleItem.vue';
-    
+    import ArticleItem from './ArticleItem.vue';
+    import { useArticleStore } from '@/stores/article'
+
+    const articleStore = useArticleStore()
+    const articles = ref(articleStore.articlesWithTags)
     const activeName = ref('first')
+    const tags = ref(['前端','后端','运维','移动端'])
     const handleClick = (tab: TabsPaneContext, event: Event) => {
       console.log(tab, event)
     }
   </script>
+
+<template>
+    <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+      <el-tab-pane :label="tags" v-for="tag in tags" :key="tag">
+        
+      </el-tab-pane>
+
+    </el-tabs>
+  </template>
+
+  
   
   <style>
     .demo-tabs > .el-tabs__content {
