@@ -36,9 +36,9 @@ const input = ref('')
   }
 
   .side-bar-item {
-    position: fixed; /* 调整间距 */
-    top: 13.5rem;
-    left: 5rem;
+    // position: fixed; /* 调整间距 */
+    // top: 13.5rem;
+    // left: 5rem;
   }
 
   .time-line-item {

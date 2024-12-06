@@ -1,7 +1,7 @@
 <template>
     <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
       <el-tab-pane label="User" name="first">
-        <ArticleItem/>
+        <!-- <ArticleItem/> -->
       </el-tab-pane>
       
       <el-tab-pane label="Config" name="second">

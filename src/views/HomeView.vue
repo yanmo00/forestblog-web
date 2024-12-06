@@ -11,7 +11,7 @@ const input = ref('')
 <template>
   <div class="container">
     <HeaderItem class="header-item"/>
-    <SideBarItem class="side-bar-item" />
+    <!-- <SideBarItem class="side-bar-item" /> -->
     <ArticleItem class="article-item"/>
   </div>
 </template>
@@ -37,9 +37,9 @@ const input = ref('')
   }
 
   .side-bar-item {
-    position: fixed; /* 调整间距 */
-    top: 13.5rem;
-    left: 5rem;
+    // position: fixed; /* 调整间距 */
+    // top: 13.5rem;
+    // left: 5rem;
   }
 
   .article-item {

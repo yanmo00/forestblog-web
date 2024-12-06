@@ -49,12 +49,12 @@
 <style lang="scss" scoped>  
   .article-list {
     .article-item {
-        width:80rem;
+        // width:80rem;
         padding: 10px;
         background-color: #000000;
         border-radius: 15px;
         margin-bottom: 15px;     
-        margin-left: 25rem;
+        // margin-left: 25rem;
         opacity: 80%;
         padding-left: 2rem;
 
