@@ -1,5 +1,6 @@
+import 'uno.css';
+import '@unocss/reset/normalize.css';
 import './assets/main.css'
-
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import ElementPlus from 'element-plus'

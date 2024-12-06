@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
+import unocss from '@unocss/vite';
 
 const httpsRE = /^https:\/\//;
 
@@ -63,6 +64,7 @@ export default ({ command, mode }) => {
     plugins: [
       vue(),
       vueDevTools(),
+      unocss(),
     ],
     resolve: {
       alias: {
