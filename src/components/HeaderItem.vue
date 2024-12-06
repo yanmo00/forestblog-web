@@ -58,9 +58,13 @@ const links = [
       align-items: center;
 
       a {
+        &:hover {
+          color: hsla(160, 100%, 37%, 1);
+        }
+
         &.router-link-exact-active {
           // color: #5d86d2;
-          color: #fff;
+          color: hsla(160, 100%, 37%, 1);
         }
 
         &.router-link-exact-active:hover {
@@ -69,6 +73,7 @@ const links = [
 
         // 禁止文字换行
         flex-shrink: 0;
+        color: #fff;
         padding: 0 1rem;
         font-size: 17px;
         font-weight: bold;
