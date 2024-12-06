@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
 import { queryArticleByTag, queryArticleList } from '@/api/home'
+import { storage } from '@/utils/Storage';
 
 export const useArticleStore = defineStore('articles', {
   state: () => ({
-    articles: [],
+    articles: storage.get('articles', []),
     articlesWithTags: []
   }),
   actions: {
@@ -12,6 +13,8 @@ export const useArticleStore = defineStore('articles', {
       try {
         const { data } = await queryArticleList();
         this.articles = data;
+        // 设置缓存
+        storage.set('articles', data);
         console.log('Fetched articles:', this.articles)
       } catch (error) {
         console.error('Error fetching articles:', error)
