@@ -17,7 +17,7 @@
 
   // 定义一个方法来解析 markdown 内容
   const parseMarkdown = (content) => {
-    return marked.parse(content || '').slice(0, 100) + '...';
+    return marked.parse(content || '');
   };
 
   const handleOpenArticle = (article) => {
@@ -44,7 +44,9 @@
 
 <style lang="scss" scoped>  
   .article-list {
-    width: 100%;
+    // 100vw - padding - sideBarWidth - gap-15
+    max-width: calc(100vw - 90px * 2 - 300px - 3.75rem);
+
     .article-item {
         // width:80rem;
         padding: 10px;
