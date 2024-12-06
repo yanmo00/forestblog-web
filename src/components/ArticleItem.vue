@@ -1,7 +1,7 @@
 <script setup>
   import { ref, onMounted } from 'vue'
   import { marked } from 'marked';
-  import { useArticleStore } from '../stores/article'
+  import { useArticleStore } from '@/stores/article'
 
   const articleStore = useArticleStore();
   const articles = ref([])

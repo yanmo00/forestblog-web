@@ -10,14 +10,12 @@ const input = ref('')
 
 <template>
   <!-- <RouterLink to="/home" class="home">Home</RouterLink> -->
-  <div> 
-    <HeaderItem class="header-item"/>
-    <div class="pt-90px px-90px flex">
-      <!-- <SideBarItem class="fixed top-30%" /> -->
-      <SideBarItem />
-      <RouterView />
-    </div>
-   </div>
+  <HeaderItem class="header-item"/>
+  <div class="w-full pt-90px px-90px flex gap-5">
+    <!-- <SideBarItem class="fixed top-30%" /> -->
+    <SideBarItem class="w-300px" />
+    <RouterView class="flex-1" />
+  </div>
 </template>
 
 <style lang="scss" scoped>
