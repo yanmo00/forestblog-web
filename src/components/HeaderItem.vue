@@ -48,7 +48,6 @@ const links = [
   $color-border: #ccc; 
 
   nav {
-    // width: 100%;
     font-size: 12px;
     text-align: center;
     margin-top: 2rem;
@@ -68,7 +67,8 @@ const links = [
           background-color: black;
         }
 
-        display: inline-block;
+        // 禁止文字换行
+        flex-shrink: 0;
         padding: 0 1rem;
         font-size: 17px;
         font-weight: bold;
@@ -107,20 +107,13 @@ const links = [
     nav {
       text-align: left;
       font-size: 15px;
-      // width: 41rem;
       padding: 1rem 0;
       margin-top: -0.25rem;
-      // margin-right: 5rem;
-      
-      .el-breadcrumb {
-        font-size: 17px;
-      }
     }
 
     .el-input {
       width: 340px;
       background-color: transparent;
-      // margin-left: 63rem;
     }
 
   }
