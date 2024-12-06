@@ -1,0 +1,23 @@
+import axios from 'axios';
+
+const { VITE_GLOB_API_URL_PREFIX } = import.meta.env;
+
+export const http = axios.create({
+  baseURL: VITE_GLOB_API_URL_PREFIX,
+  timeout: 10 * 1000,
+})
+
+http.interceptors.request.use(
+  config => {
+    // 在请求被发送之前做一些处理
+    return config;
+  },
+  error => {
+    // 处理请求错误
+    return Promise.reject(error);
+  }
+);
+
+http.interceptors.response.use(
+  
+)
