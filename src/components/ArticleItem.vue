@@ -4,19 +4,7 @@
   import { useArticleStore } from '@/stores/article'
 
   const articleStore = useArticleStore();
-  const articles = ref([])
   
-  onMounted(async () => {
-  try {
-    await articleStore.fetchArticles()
-    console.log('Articles fetched successfully in ArticleItem.vue:', articleStore.articles)
-    articles.value = articleStore.articles // 确保将数据赋值给 articles
-    console.log(articles.value);
-    
-  } catch (error) {
-    console.error('Failed to fetch articles in ArticleItem.vue:', error)
-  }
-})
 
   // 方法：格式化日期为年月日格式
   const formatDate = (dateString) => {
@@ -29,14 +17,14 @@
 
   // 定义一个方法来解析 markdown 内容
   const parseMarkdown = (content) => {
-    return marked.parse(content || '');
+    return marked.parse(content || '').slice(0, 100) + '...';
   };
 
 </script>
 
 <template>
   <div class="article-list">
-    <div v-for="(article, index) in articles" :key="index" class="article-item">
+    <div v-for="(article, index) in articleStore.articles" :key="index" class="article-item">
       <p class="title">{{ article.title }}</p>
       <div class="content" v-html="parseMarkdown(article.content)"></div>
       <p class="author">作者: {{ article.author }}</p>
@@ -48,6 +36,7 @@
 
 <style lang="scss" scoped>  
   .article-list {
+    width: 100%;
     .article-item {
         // width:80rem;
         padding: 10px;

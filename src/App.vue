@@ -1,27 +1,33 @@
 <script setup>
-import { ref } from 'vue'
+import { ref,onMounted } from 'vue'
 import { RouterView } from 'vue-router';
 import HeaderItem from '@/components/HeaderItem.vue'
 import SideBarItem from '@/components/SideBarItem.vue';
+import { useArticleStore } from '@/stores/article'
 
-const input = ref('')
+const articleStore = useArticleStore();
+onMounted(async () => {
+  try {
+    await articleStore.fetchArticles()
+    console.log('Articles fetched successfully in ArticleItem.vue:', articleStore.articles)
+    
+  } catch (error) {
+    console.error('Failed to fetch articles in ArticleItem.vue:', error)
+  }
+})
 
 </script>
 
 <template>
-  <!-- <RouterLink to="/home" class="home">Home</RouterLink> -->
   <HeaderItem class="header-item"/>
-  <div class="w-full pt-90px px-90px flex gap-5">
-    <!-- <SideBarItem class="fixed top-30%" /> -->
+  <div class="w-100vw pt-120px px-90px flex gap-15">
     <SideBarItem class="w-300px" />
     <RouterView class="flex-1" />
   </div>
 </template>
 
 <style lang="scss" scoped>
-  .home {
-    font-size: 50rem;
-  }
+
 
   .header-item {
     position: fixed;

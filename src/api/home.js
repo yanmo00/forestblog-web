@@ -7,3 +7,11 @@ export function queryArticleList() {
     method: 'get'
   })
 }
+
+// 根据标签查询文章
+export function queryArticleByTag() {
+  return http.request({
+    url: '/article/selectByTag',
+    method: 'get'
+  })
+}
