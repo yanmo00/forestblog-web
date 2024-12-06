@@ -8,6 +8,11 @@ export const useArticleStore = defineStore('articles', {
     articlesWithTags: []
   }),
   actions: {
+    // 获取文章详情
+    getArticleById(id) {
+      // TODO: 修改为你的查询文字详情方法
+      return this.articles.find((article) => article.id === +id)
+    },
       // 获取文章列表
     async fetchArticles() {
       try {

@@ -22,6 +22,11 @@ const router = createRouter({
       name: 'timeline',
       component: TimelineView
     },
+    {
+      path: '/article/:id',
+      name: 'article',
+      component: () => import('@/views/Article.vue')
+    }
   ],
 })
 

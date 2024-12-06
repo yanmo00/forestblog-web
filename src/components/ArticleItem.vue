@@ -20,12 +20,20 @@
     return marked.parse(content || '').slice(0, 100) + '...';
   };
 
+  const handleOpenArticle = (article) => {
+    console.log(article)
+  }
+
 </script>
 
 <template>
   <div class="article-list">
-    <div v-for="(article, index) in articleStore.articles" :key="index" class="article-item">
-      <p class="title">{{ article.title }}</p>
+    <div v-for="(article, index) in articleStore.articles" :key="article.id" class="article-item">
+      <!-- <p class="title cursor-pointer" @click="handleOpenArticle(article)">{{ article.title }}</p> -->
+      <router-link 
+        class="title cursor-pointer" 
+        :to="{ name: 'article', params: { id: article.id } }"
+      >{{ article.title }}</router-link>
       <div class="content" v-html="parseMarkdown(article.content)"></div>
       <p class="author">作者: {{ article.author }}</p>
       <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
@@ -40,11 +48,10 @@
     .article-item {
         // width:80rem;
         padding: 10px;
-        background-color: #000000;
+        background-color: rgba(0, 0, 0, 0.8);
         border-radius: 15px;
         margin-bottom: 15px;     
         // margin-left: 25rem;
-        opacity: 80%;
         padding-left: 2rem;
 
         .title {
