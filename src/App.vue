@@ -9,7 +9,7 @@ const articleStore = useArticleStore();
 onMounted(async () => {
   try {
     await articleStore.fetchArticles()
-    console.log('Articles fetched successfully in ArticleItem.vue:', articleStore.articles)
+    // console.log('Articles fetched successfully in ArticleItem.vue:', articleStore.articles)
     
   } catch (error) {
     console.error('Failed to fetch articles in ArticleItem.vue:', error)

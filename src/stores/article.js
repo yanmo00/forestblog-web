@@ -25,7 +25,7 @@ export const useArticleStore = defineStore('articles', {
         console.error('Error fetching articles:', error)
       }
     },
-    async fetchArticlesByTag(tags) {
+    async fetchArticlesByTag(tag) {
       try {
         const { data } = await queryArticleByTag(tag);
         this.articlesWithTags = data;

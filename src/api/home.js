@@ -9,9 +9,9 @@ export function queryArticleList() {
 }
 
 // 根据标签查询文章
-export function queryArticleByTag() {
+export function queryArticleByTag(tag) {
   return http.request({
-    url: '/article/selectByTag',
+    url: `/article/selectByTag?tag=${tag}`,
     method: 'get'
   })
 }

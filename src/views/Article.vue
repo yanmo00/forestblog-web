@@ -53,14 +53,14 @@ marked.setOptions({
   }
 })
 
-const route = useRoute();
-const articleStore = useArticleStore();
-const detail = articleStore.getArticleById(route.params.id);
+  const route = useRoute();
+  const articleStore = useArticleStore();
+  const detail = articleStore.getArticleById(route.params.id);
 
-// 定义一个方法来解析 markdown 内容
-const parseMarkdown = (content) => {
-  return marked.parse(content || '');
-};
+  // 定义一个方法来解析 markdown 内容
+  const parseMarkdown = (content) => {
+    return marked.parse(content || '');
+  };
 
 </script>
 
