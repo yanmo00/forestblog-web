@@ -28,7 +28,6 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 
-
   .header-item {
     position: fixed;
     top: 0;

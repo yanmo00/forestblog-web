@@ -46,7 +46,8 @@
   .article-list {
     // 100vw - padding - sideBarWidth - gap-15
     max-width: calc(100vw - 90px * 2 - 300px - 3.75rem);
-    margin-top: -90rem;
+    margin-top: -92rem;
+    margin-right: 3rem;
     .article-item {
         // width:80rem;
         padding: 10px;

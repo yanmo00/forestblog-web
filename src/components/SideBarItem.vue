@@ -77,42 +77,64 @@ function updateUptime(startTime) {
 </template>
 
 <style lang="scss" scoped>
-.sidebar-header {
-  width: 300px;
-  padding: 10px;
-  background-color: #000000;
-  border-radius: 15px;
+.sidebar {
+  max-width: 20rem; // 设置最大宽度
+  padding: 1rem; // 使用 rem 单位
+  border-radius: 1rem; // 使用 rem 单位
   text-align: center;
-  margin-bottom: 15px;
   color: white;
+}
+
+.sidebar-header {
+  background-color: #000000;
+  border-radius: 1rem; // 使用 rem 单位
+  text-align: center;
+  color: white;
+  margin-top: 5rem;
+  margin-bottom: 0.5rem;
 
   img {
-    width: 100px;
-    height: 100px;
+    padding-top: 1rem;
+    max-width: 100px; // 设置最大宽度
+    height: auto; // 自动调整高度
     border-radius: 50%;
-    margin-bottom: 10px;
+    margin-bottom: 1rem; // 使用 rem 单位
   }
 
   .title, .value {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
+  }
+
+  .title p, .value p {
+    margin: 0.5rem 0; // 使用 rem 单位
   }
 }
 
 .sidebar-center {
-  width: 300px;
-  padding: 10px;
+  padding: 0.5rem;
   background-color: #000;
-  border-radius: 15px;
+  border-radius: 1rem; // 使用 rem 单位
   text-align: center;
-  opacity: 80%;
+  opacity: 0.8;
   color: white;
 
   span {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    display: block;
+    margin: 0.5rem 0; // 使用 rem 单位
+  }
+}
+
+// 媒体查询
+@media (max-width: 768px) {
+  .sidebar {
+    width: 95%; // 在小屏幕上增加宽度
+  }
+
+  .sidebar-header img {
+    width: 60%; // 在小屏幕上增加图片宽度
   }
 }
 </style>
