@@ -5,7 +5,6 @@
 
   const articleStore = useArticleStore();
   
-
   // 方法：格式化日期为年月日格式
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -48,6 +47,7 @@
     max-width: calc(100vw - 90px * 2 - 300px - 3.75rem);
     margin-top: -92rem;
     margin-right: 3rem;
+    
     .article-item {
         // width:80rem;
         padding: 10px;
@@ -73,7 +73,6 @@
             text-overflow: ellipsis;
         }
       
-
         .author {
             font-size: 0.9rem;
             display: inline;
