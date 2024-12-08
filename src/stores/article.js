@@ -5,7 +5,8 @@ import { storage } from '@/utils/Storage';
 export const useArticleStore = defineStore('articles', {
   state: () => ({
     articles: storage.get('articles', []),
-    articlesWithTags: []
+    articlesWithTags: [],
+    articlesWithSearch: []
   }),
   actions: {
     // 获取文章详情
@@ -33,6 +34,29 @@ export const useArticleStore = defineStore('articles', {
       } catch (error) {
         console.error('Error fetching articles by tag:', error);
       }
+    },
+
+  async searchArticles(condition) {
+    try {
+      const { data } = await queryArticleByContent(condition);
+
+      if (data.length === 0) {
+        // 如果通过内容搜索的结果为空，尝试通过标题搜索
+        const { data: titleData } = await queryArticleByTitle(condition);
+        if (titleData.length === 0) {
+          // 如果通过标题搜索的结果也为空，提示用户
+          console.log('搜索结果为空');
+        } else {
+          // 如果通过标题搜索有结果，更新文章列表
+          this.articlesWithSearch = titleData;
+        }
+      } else {
+        // 如果通过内容搜索有结果，更新文章列表
+        this.articlesWithSearch = data;
+      }
+    } catch (error) {
+      console.error('Error searching articles:', error);
     }
+  }
   }
 })

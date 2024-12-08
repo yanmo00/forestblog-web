@@ -3,6 +3,7 @@ import { RouterLink } from 'vue-router'
 import { ref } from 'vue'
 import { Search } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router';
+import DropItem from './DropItem.vue';
 
 const router = useRouter();
 const goToHome = () => {
@@ -39,8 +40,9 @@ const links = [
         </div>
       </nav>
     </div>
+
   </header>
-  
+  <DropItem />
 </template>
 
 <style lang="scss" scoped>

@@ -15,3 +15,17 @@ export function queryArticleByTag(tag) {
     method: 'get'
   })
 }
+
+export function queryArticleByContent(content) {
+  return http.request({
+    url: `/article/selectByContent?content=${content}`,
+    method: 'get'
+  })
+}
+
+export function queryArticleByTitle(title) {
+  return http.request({
+    url: `/article/selectByTitle?title=${title}`,
+    method: 'get'
+  })
+}

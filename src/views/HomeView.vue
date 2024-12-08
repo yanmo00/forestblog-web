@@ -10,23 +10,13 @@ const input = ref('')
 
 <template>
   <div class="container">
-    <HeaderItem class="header-item"/>
+    <!-- <HeaderItem class="header-item"/> -->
     <!-- <SideBarItem class="side-bar-item" /> -->
     <ArticleItem class="article-item"/>
   </div>
 </template>
 
 <style lang="scss" scoped>
-  .header-item {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000; /* 确保 header 在其他内容之上 */
-    background-color: #000; /* 添加背景颜色以覆盖内容 */
-    padding: 15px;
-    opacity: 80%;
-  }
 
   .container {
     position: relative;
