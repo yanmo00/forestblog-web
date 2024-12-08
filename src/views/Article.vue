@@ -87,6 +87,7 @@ marked.setOptions({
     // max-width: calc(100vw - 90px * 2 - 300px - 15rem);
     // max-width: calc(100vw - 90px * 2 - 300px);
     padding-top: 1rem;
+    padding-left: 1rem;
     max-width: 100%;
     overflow: auto;
   }

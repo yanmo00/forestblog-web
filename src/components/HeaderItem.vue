@@ -18,9 +18,9 @@ const links = [
 
 <template>
   <header>
-    <div>
+    <div @click="goToHome()">
       <img class="logo" height="50rpx" src="../assets/logo.jpg" />
-      <h3 class="title" @click="goToHome()">Forest-Blog</h3>
+      <h3 class="title">Forest-Blog</h3>
     </div>
     <div>
       <el-input 

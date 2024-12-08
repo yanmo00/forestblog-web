@@ -49,22 +49,15 @@
         @mouseover="handleMouseOver(index)"
         @mouseleave="handleMouseLeave"
       >
-        <span 
+        <router-link
           style="font-size: var(--el-font-size-large); color: var(--el-text-color-secondary);"
           @mouseover="handleMouseOver(index)"
           @mouseleave="handleMouseLeave"
+          :to="{ name: 'article', params: { id: article.id } }"
           :style="{ color: hoveredIndex === index ? '#ffcc00' : '' }"
         >
-          {{ formatDate(article.publishdate) }}
-        </span>&emsp;
-        <span 
-          style="font-size: var(--el-font-size-large); color: var(--el-text-color-secondary);"
-          @mouseover="handleMouseOver(index)"
-          @mouseleave="handleMouseLeave"
-          :style="{ color: hoveredIndex === index ? '#ffcc00' : '' }"
-        >
-          {{ article.title }}
-        </span>
+          {{ formatDate(article.publishdate) }} &emsp; {{ article.title }}
+        </router-link>
       </el-timeline-item>
     </el-timeline>
   </div>
