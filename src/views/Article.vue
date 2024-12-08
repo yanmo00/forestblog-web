@@ -23,7 +23,10 @@
 import { useRoute } from 'vue-router';
 import { useArticleStore } from '@/stores/article'
 import { marked } from 'marked';
+import { onMounted } from 'vue';
 import dayjs from 'dayjs'
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github-dark.css';
 
 var renderer = new marked.Renderer();
 
@@ -39,6 +42,14 @@ renderer.heading = function ({ text, depth }) {
     </h${depth}>`
 }
 
+onMounted(() => {
+  // 移除手动高亮代码块的逻辑
+  const codeBlocks = document.querySelectorAll('pre code');
+  codeBlocks.forEach((block) => {
+    hljs.highlightBlock(block);
+  });
+})
+
 marked.setOptions({
   renderer,
   gfm: true,//默认为true。 允许 Git Hub标准的markdown.
@@ -48,9 +59,9 @@ marked.setOptions({
   sanitize: false,//对输出进行过滤（清理）
   smartLists: true,
   smartypants: true, //使用更为时髦的标点，比如在引用语法中加入破折号。
-  highlight: function (code) {
-    return require('highlight.js').highlightAuto(code).value;
-  }
+  // highlight: function (pre,code) {
+  //   return require('highlight.js').highlightAuto(pre,code).value;
+  // }
 })
 
   const route = useRoute();

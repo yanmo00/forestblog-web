@@ -46,13 +46,13 @@
   .article-list {
     // 100vw - padding - sideBarWidth - gap-15
     max-width: calc(100vw - 90px * 2 - 300px - 3.75rem);
-
+    margin-top: -90rem;
     .article-item {
         // width:80rem;
         padding: 10px;
         background-color: rgba(0, 0, 0, 0.8);
         border-radius: 15px;
-        margin-bottom: 15px;     
+        margin-top: 1rem;     
         // margin-left: 25rem;
         padding-left: 2rem;
 
