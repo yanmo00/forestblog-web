@@ -2,6 +2,7 @@
   import { ref, onMounted } from 'vue'
   import { marked } from 'marked';
   import { useArticleStore } from '@/stores/article'
+  import router from '@/router';
 
   const articleStore = useArticleStore();
   
@@ -20,6 +21,7 @@
   };
 
   const handleOpenArticle = (article) => {
+    router.push({ name: 'article', params: { id: article.id } })
     console.log(article)
   }
 
