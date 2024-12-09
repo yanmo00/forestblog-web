@@ -15,17 +15,9 @@ const input = ref('')
 <style lang="scss" scoped>
   
 
-  .container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end; /* 靠右对齐 */
-    padding-top: 60px; /* 留出 header 的空间 */
-  }
 
-  .side-bar-item {
-    
-  }
+
+
 
   // .side-bar-item {
   //   position: fixed; /* 调整间距 */
