@@ -73,6 +73,8 @@
             line-clamp: 3; /* 标准属性 */
             overflow: hidden;
             text-overflow: ellipsis;
+            margin-bottom: 0.5rem;
+
         }
       
         .author {
