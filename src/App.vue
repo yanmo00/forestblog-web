@@ -21,13 +21,13 @@ onMounted(async () => {
     height: document.body.clientHeight,
     type: 'line',
     speed: 5,
-    frequency: 5,
-    slope: { x: -1, y: 10 },
-    directionX: 1,
-    speed: 3,
+    frequency: 100,
+    slope: { x: -1, y: -1 },
+    directionX: 0,
+    speed: 10,
     spread: -10,
     randomOpacity: true,
-    backgroundColor: ['#1b1813', '#000000'],
+    backgroundColor: ['#000000','#292a3a', '#536976','#000001','#000001'],
     quantity: 30,
   })
 
@@ -65,9 +65,9 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
   canvas {
-    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(10px, 10px, 2px);
+    transform: translate3d(10px, 10px, 2px);
     -moz-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
     z-index: -1;
     position: fixed; /* 确保 canvas 在其他内容之下 */
     top: 0;
@@ -75,8 +75,6 @@ onMounted(async () => {
     width: 100%;
     height: 100%;
   }
-
-
  
 
   .header-item {
