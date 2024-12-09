@@ -27,7 +27,7 @@
 
 <template>
   <div class="article-list">
-    <div v-for="(article, index) in articleStore.articlesWithSearch" :key="article.id" class="article-item">
+    <div v-for="(article, index) in articleStore.articlesWithSearch" :key="article.id" class="article-item" @click="handleOpenArticle(article)">
       <!-- <p class="title cursor-pointer" @click="handleOpenArticle(article)">{{ article.title }}</p> -->
       <router-link 
         class="title cursor-pointer" 

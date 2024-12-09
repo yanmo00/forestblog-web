@@ -3,7 +3,10 @@ import { ref } from 'vue'
 import SearchResultItem from '@/components/SearchResultItem.vue';
 
 const input = ref('')
-
+const handleOpenArticle = (article) => {
+    console.log(article)
+    router.push({ name: 'article', params: { id: article.id } })
+  }
 </script>
 
 <template>

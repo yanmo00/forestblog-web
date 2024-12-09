@@ -2,6 +2,7 @@
   import { ref, onMounted } from 'vue'
   import { marked } from 'marked';
   import { useArticleStore } from '@/stores/article'
+  import router from '@/router';
 
   const articleStore = useArticleStore();
   
@@ -21,13 +22,14 @@
 
   const handleOpenArticle = (article) => {
     console.log(article)
+    router.push({ name: 'article', params: { id: article.id } })
   }
 
 </script>
 
 <template>
   <div class="article-list">
-    <div v-for="(article, index) in articleStore.articles" :key="article.id" class="article-item">
+    <div v-for="(article, index) in articleStore.articles" :key="article.id" class="article-item" @click="handleOpenArticle(article)">
       <!-- <p class="title cursor-pointer" @click="handleOpenArticle(article)">{{ article.title }}</p> -->
       <router-link 
         class="title cursor-pointer" 
