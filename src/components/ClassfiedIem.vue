@@ -37,9 +37,8 @@
         :to="{ name: 'article', params: { id: article.id } }"
       >{{ article.title }}</router-link>
       <div class="content" v-html="parseMarkdown(article.content)"></div>
-      <p class="author">作者: {{ article.author }}</p>
-      <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-      <p class="date">发布日期: {{ formatDate(article.publishdate) }}</p>
+      <p class="author">作者: {{ article.author }}&nbsp;&nbsp;|&nbsp;&nbsp;发布日期: {{ formatDate(article.publishdate) }}</p>
+
     </div>
   </div>
 </template>
