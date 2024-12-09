@@ -1,22 +1,24 @@
 <template>
-  <div class="article">
-    <h1 class="mb-20px text-center">{{ detail.title }}</h1>
-    <div class="flex-center gap-5">
-      <div class="flex-center gap-2">
-        <el-icon>
-          <Calendar />
-        </el-icon>
-        <div>{{ dayjs(detail.updatedAt).format("YYYY-MM-DD") }}</div>
+  <el-scrollbar height="750px">
+    <div class="article">
+      <h1 class="mb-20px text-center">{{ detail.title }}</h1>
+      <div class="flex-center gap-5">
+        <div class="flex-center gap-2">
+          <el-icon>
+            <Calendar />
+          </el-icon>
+          <div>{{ dayjs(detail.updatedAt).format("YYYY-MM-DD") }}</div>
+        </div>
+        <div class="flex-center gap-1">
+          <el-icon>
+            <User />
+          </el-icon>
+          <div>{{ detail.author }}</div>
+        </div>
       </div>
-      <div class="flex-center gap-1">
-        <el-icon>
-          <User />
-        </el-icon>
-        <div>{{ detail.author }}</div>
-      </div>
+      <div class="article-content" v-html="parseMarkdown(detail.content)"></div>
     </div>
-    <div class="article-content" v-html="parseMarkdown(detail.content)"></div>
-  </div>
+  </el-scrollbar>
 </template>
 
 <script setup>
@@ -77,8 +79,7 @@ marked.setOptions({
 
 <style lang="scss" scoped>
 .article {
-  height: calc(100vh - 120px - 30px);
-  overflow: auto;
+  height: 100%;
   background: rgba(0, 0, 0, 0.8);
   padding: 10px;
   border-radius: 15px;
@@ -89,7 +90,6 @@ marked.setOptions({
     padding-top: 1rem;
     padding-left: 1rem;
     max-width: 100%;
-    overflow: auto;
   }
 }
 </style>

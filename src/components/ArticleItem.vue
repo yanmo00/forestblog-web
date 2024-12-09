@@ -29,15 +29,15 @@
 
 <template>
   <div class="article-list">
-    <div v-for="(article, index) in articleStore.articles" :key="article.id" class="article-item" @click="handleOpenArticle(article)">
-      <!-- <p class="title cursor-pointer" @click="handleOpenArticle(article)">{{ article.title }}</p> -->
-      <router-link 
-        class="title cursor-pointer" 
-        :to="{ name: 'article', params: { id: article.id } }"
-      >{{ article.title }}</router-link>
-      <div class="content" v-html="parseMarkdown(article.content)"></div>
-      <p class="author">作者: {{ article.author }}&nbsp;&nbsp;|&nbsp;&nbsp;发布日期: {{ formatDate(article.publishdate) }}</p>
-    </div>
+      <div v-for="(article, index) in articleStore.articles" :key="article.id" class="article-item" @click="handleOpenArticle(article)">
+        <!-- <p class="title cursor-pointer" @click="handleOpenArticle(article)">{{ article.title }}</p> -->
+        <router-link 
+          class="title cursor-pointer" 
+          :to="{ name: 'article', params: { id: article.id } }"
+        >{{ article.title }}</router-link>
+        <div class="content" v-html="parseMarkdown(article.content)"></div>
+        <p class="author">作者: {{ article.author }}&nbsp;&nbsp;|&nbsp;&nbsp;发布日期: {{ formatDate(article.publishdate) }}</p>
+      </div>
   </div>
 </template>
 
