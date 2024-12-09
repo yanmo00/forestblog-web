@@ -3,7 +3,7 @@
     import type { TabsPaneContext } from 'element-plus'
     import ArticleItem from './ArticleItem.vue';
     import { useArticleStore } from '@/stores/article'
-    import ClassfiedIem from './ClassfiedIem.vue';
+    import ClassfiedIem from './ClassfiedItem.vue';
 
     const articleStore = useArticleStore()
     const activeName = ref('前端')
@@ -39,6 +39,10 @@
   
   
   <style>
+    .demo-tabs {
+      margin-left: 3.0rem;
+    }
+
     .demo-tabs > .el-tabs__content {
       /* padding: 32px; */
       color: #6b778c;

@@ -68,12 +68,12 @@
     border-radius: 15px;
     opacity: 80%;
     height: 30rem;
-    margin-top: -10rem;
+    margin-top: -9.5rem;
     background-color: black;
 
     &.time-line-item {
       position: relative;
-      left: 30rem;
+      left: 29rem;
       top: 15rem;
       width: 80rem;
       height: 150%;
