@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { queryArticleByTag, queryArticleList } from '@/api/home'
+import { queryArticleByTag, queryArticleList,queryArticleByContent,queryArticleByTitle } from '@/api/home'
 import { storage } from '@/utils/Storage';
 
 export const useArticleStore = defineStore('articles', {
@@ -39,7 +39,6 @@ export const useArticleStore = defineStore('articles', {
   async searchArticles(condition) {
     try {
       const { data } = await queryArticleByContent(condition);
-
       if (data.length === 0) {
         // 如果通过内容搜索的结果为空，尝试通过标题搜索
         const { data: titleData } = await queryArticleByTitle(condition);

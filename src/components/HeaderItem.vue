@@ -1,20 +1,35 @@
 <script setup>
 import { RouterLink } from 'vue-router'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Search } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router';
-import DropItem from './DropItem.vue';
+import { useArticleStore } from '@/stores/article';
 
+const articleStore = useArticleStore();
+const searchResult = ref('')
 const router = useRouter();
 const goToHome = () => {
   router.push({ name: 'home' }); // 跳转到首页
 };
+
 const input = ref('')
 const links = [
   { text: '主页', to: '/home' },
   { text: '分类', to: '/classification' },
   { text: '时间线', to: '/timeline' }
 ]
+
+const handleSearch = () => {
+  console.log(input.value);
+  articleStore.searchArticles(input.value);
+  console.log(articleStore.articlesWithSearch.length);
+}
+
+const handleEnterup = () => {
+  router.push({ name: 'searchresult' })
+}
+
+
 </script>
 
 <template>
@@ -27,6 +42,8 @@ const links = [
       <el-input 
         v-model="input"
         placeholder="请输入关键词"
+        @input="handleSearch()"
+        @keyup.enter.native="handleEnterup()"
         :suffix-icon="Search"/>
       <nav>
         <!-- <el-breadcrumb separator="/">
@@ -42,7 +59,7 @@ const links = [
     </div>
 
   </header>
-  <DropItem />
+
 </template>
 
 <style lang="scss" scoped>
