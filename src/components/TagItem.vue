@@ -31,20 +31,23 @@
       :label="tag.label"
       :name="tag.name"
       >
-        <ClassfiedIem/>
+        <Transition name="tab-fade" mode="out-in">
+          <div class="tab-content" :key="tag.name">
+            <ClassfiedIem/>
+          </div>
+        </Transition>
       </el-tab-pane>
     </el-tabs>
   </template>
 
   
   
-  <style>
+  <style lang="scss" scoped>
     .demo-tabs {
       margin-left: 3.0rem;
     }
 
-    .demo-tabs > .el-tabs__content {
-      /* padding: 32px; */
+    .demo-tabs > :deep(.el-tabs__content) {
       color: #6b778c;
       font-size: 32px;
       font-weight: 600;
@@ -53,8 +56,29 @@
     }
 
     /* 隐藏滚动条 */
-    .demo-tabs > .el-tabs__content::-webkit-scrollbar {
-      display: none; /* Chrome, Safari 和 Opera */
+    .demo-tabs > :deep(.el-tabs__content::-webkit-scrollbar) {
+      display: none;
+    }
+
+    // 添加动画样式
+    .tab-content {
+      position: relative;
+      width: 100%;
+    }
+
+    .tab-fade-enter-active,
+    .tab-fade-leave-active {
+      transition: all 0.3s ease;
+    }
+
+    .tab-fade-enter-from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    .tab-fade-leave-to {
+      opacity: 0;
+      transform: translateX(-20px);
     }
   </style>
   

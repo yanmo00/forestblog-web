@@ -9,34 +9,44 @@ const input = ref('')
 </script>
 
 <template>
-  <TagItem class="tag-item"/>
+  <div class="container">
+    <Transition name="fade-slide" appear>
+      <div class="content">
+        <TagItem class="tag-item"/>
+      </div>
+    </Transition>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-  
+  .container {
+    width: 100%;
+    position: relative;
+    min-height: 100vh;
+  }
 
+  .content {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
 
+  .fade-slide-enter-active,
+  .fade-slide-leave-active {
+    transition: all 0.6s ease-out;
+    position: absolute;
+    width: 100%;
+  }
 
+  .fade-slide-enter-from,
+  .fade-slide-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
+  }
 
-
-  // .side-bar-item {
-  //   position: fixed; /* 调整间距 */
-  //   top: 13.5rem;
-  //   left: 5rem;
-  // }
-
-  // .tag-item {
-  //   position: fixed;
-  //   top: 11rem;
-  //   left: 30rem;
-  // }
-
-  // .article-item {
-  //   position: relative;
-  //   left: 3rem;
-  //   top: 65rem;
-  //   width: 100%;
-  //   box-sizing: border-box;
-  //   padding-top: 30rem; /* 留出一些顶部空间 */
-  // }
+  .fade-slide-enter-to,
+  .fade-slide-leave-from {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>

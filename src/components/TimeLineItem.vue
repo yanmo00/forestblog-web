@@ -68,7 +68,9 @@
     border-radius: 15px;
     opacity: 80%;
     height: 30rem;
-    margin-top: -9.5rem;
+    margin-top: -12rem;
+    margin-left: -7rem;
+
     background-color: black;
 
     &.time-line-item {

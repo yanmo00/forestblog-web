@@ -11,20 +11,30 @@ const handleOpenArticle = (article) => {
 
 <template>
   <div class="container">
-    <SearchResultItem class="search-result-item"/>
+    <Transition name="fade-slide" appear>
+      <div class="content">
+        <SearchResultItem class="search-result-item"/>
+      </div>
+    </Transition>
   </div>
 </template>
 
 <style lang="scss" scoped>
-
   .container {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* 靠右对齐 */
-    padding-top: 60px; /* 留出 header 的空间 */
+    align-items: flex-end;
+    padding-top: 60px;
+    width: 100%;
+    min-height: 100vh;
   }
 
+  .content {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
 
   .search-result-item {
     position: relative;
@@ -32,6 +42,25 @@ const handleOpenArticle = (article) => {
     top: 60rem;
     width: 100%;
     box-sizing: border-box;
-    padding-top: 30rem; /* 留出一些顶部空间 */
+    padding-top: 30rem;
+  }
+
+  .fade-slide-enter-active,
+  .fade-slide-leave-active {
+    transition: all 0.6s ease-out;
+    position: absolute;
+    width: 100%;
+  }
+
+  .fade-slide-enter-from,
+  .fade-slide-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .fade-slide-enter-to,
+  .fade-slide-leave-from {
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>

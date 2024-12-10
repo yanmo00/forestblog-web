@@ -8,12 +8,12 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   base: '/forest_front/',
   routes: [{
-    path: '/blog',
+    path: '/blog', // 此处路径必须跟上/，没有相对路径
     name: 'blog',
     component: Middle,
     children: [
       {
-        path: '/home',
+        path: '/home', // 此处/加就是绝对路径，不加就是相对路径
         name: 'home',
         component: HomeView
       },
