@@ -57,11 +57,7 @@ onMounted(async () => {
   <section id="hero">
     <canvas id="canvas"></canvas>
   </section>
-  <HeaderItem class="header-item" />
-  <div class="w-100vw pt-120px px-90px flex gap--50 overflow-x-hidden ">
-    <SideBarItem class="w-300px" />
-    <RouterView class="flex-1" />
-  </div>
+    <RouterView />
 </template>
 
 <style lang="scss" scoped>
