@@ -5,6 +5,7 @@ import { RouterView } from 'vue-router'
 import HeaderItem from '@/components/HeaderItem.vue'
 import SideBarItem from '@/components/SideBarItem.vue'
 import { useArticleStore } from '@/stores/article'
+import image from '@/assets/bg.png'
 import Starback from 'starback'
 
 const articleStore = useArticleStore()
@@ -32,7 +33,7 @@ onMounted(async () => {
   })
 
   let mountain = new Image()
-  mountain.src = 'src/assets/bg4-removebg.png'
+  mountain.src = image
 
   mountain.onload = () => {
     starback.addToFront((ctx) => {
