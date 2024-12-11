@@ -2,34 +2,34 @@
   <div class="article-wrapper">
     <Transition name="fade-slide" appear>
       <div class="content" :key="route.params.id">
-        <el-scrollbar height="750px">
-          <div class="article-container">
-            <div class="article">
-              <div class="article-header">
-                <el-button 
-                  class="back-btn" 
-                  @click="router.go(-1)" 
-                  text
-                  :icon="ArrowLeft"
-                >
-                  返回
-                </el-button>
-                <h1 class="mb-20px text-center">{{ detail.title }}</h1>
-              </div>
-              <div class="flex-center gap-5">
-                <div class="flex-center gap-2">
-                  <el-icon><Calendar /></el-icon>
-                  <div>{{ dayjs(detail.updatedAt).format("YYYY-MM-DD") }}</div>
-                </div>
-                <div class="flex-center gap-1">
-                  <el-icon><User /></el-icon>
-                  <div>{{ detail.author }}</div>
-                </div>
-              </div>
-              <div class="article-content" v-html="parseMarkdown(detail.content)"></div>
+        <div class="article-container">
+          <div class="article">
+            <div class="article-header">
+              <el-button 
+                class="back-btn" 
+                @click="router.go(-1)" 
+                text
+                :icon="ArrowLeft"
+              >
+                返回
+              </el-button>
+              <h1 class="mb-20px text-center">{{ detail.title }}</h1>
             </div>
+            <div class="flex-center gap-5">
+              <div class="flex-center gap-2">
+                <el-icon><Calendar /></el-icon>
+                <div>{{ dayjs(detail.updatedAt).format("YYYY-MM-DD") }}</div>
+              </div>
+              <div class="flex-center gap-1">
+                <el-icon><User /></el-icon>
+                <div>{{ detail.author }}</div>
+              </div>
+            </div>
+            <el-scrollbar height="calc(100vh - 200px)" class="scrollbar-wrapper">
+              <div class="article-content" v-html="parseMarkdown(detail.content)"></div>
+            </el-scrollbar>
           </div>
-        </el-scrollbar>
+        </div>
       </div>
     </Transition>
   </div>
@@ -96,12 +96,19 @@ marked.setOptions({
 
 <style lang="scss" scoped>
 .article-wrapper {
-  position: fixed;
-  top: 7rem;
-  left: 5rem;
+  position: relative;
   width: 100%;
-  height: 100vh;
+  height: 85vh;
   overflow: hidden;
+
+  // 隐藏 webkit 浏览器的滚动条
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // 隐藏 Firefox 的滚动条
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .content {
@@ -116,21 +123,24 @@ marked.setOptions({
 .article-container {
   display: flex;
   justify-content: center;
-  padding: 3rem;
+  width: 100%;
+  height: 100%;
 }
 
 .article {
   height: 100%;
   background: rgba(0, 0, 0, 0.8);
-  padding: 20px;
   border-radius: 15px;
-  width: 80%;  // 设置文章宽度
-  max-width: 1200px;  // 最大宽度
+  width: 100%;
+  max-width: 1200px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 
   .article-header {
     position: relative;
     margin-bottom: 2rem;
+    padding-top: 1rem;
 
     .back-btn {
       position: absolute;
@@ -158,9 +168,13 @@ marked.setOptions({
     }
   }
 
+  .scrollbar-wrapper {
+    flex: 1;
+    overflow: hidden;
+  }
+
   .article-content {
-    padding-top: 1rem;
-    margin-left: 2rem;
+    padding: 1rem 2rem;
     max-width: 100%;
   }
 }
@@ -182,5 +196,11 @@ marked.setOptions({
 .fade-slide-leave-to {
   opacity: 0;
   transform: translateX(-30px);
+}
+
+// 添加以下全局样式来隐藏外部滚动条
+:deep(body),
+:deep(html) {
+  overflow: hidden;
 }
 </style>
