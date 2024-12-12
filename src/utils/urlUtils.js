@@ -18,6 +18,7 @@ export function setObjToUrlParams(baseUrl, obj) {
   if (/\?$/.test(baseUrl)) {
     url = baseUrl + parameters;
   } else {
+    // \/转义，?可选，$最后一个字符
     url = baseUrl.replace(/\/?$/, '?') + parameters;
   }
   return url;

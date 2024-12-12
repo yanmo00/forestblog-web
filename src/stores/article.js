@@ -17,9 +17,10 @@ export const useArticleStore = defineStore('articles', {
       // 获取文章列表
     async fetchArticles() {
       try {
+        // 解构赋值语法，从返回的对象提取出data属性
         const { data } = await queryArticleList();
         this.articles = data;
-        // 设置缓存
+        // 设置缓存，键值对语法
         storage.set('articles', data);
         console.log('Fetched articles:', this.articles)
       } catch (error) {
