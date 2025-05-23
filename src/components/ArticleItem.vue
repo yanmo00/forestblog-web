@@ -21,7 +21,6 @@
   };
 
   const handleOpenArticle = (article) => {
-    console.log(article)
     router.push({ name: 'article', params: { id: article.id } })
   }
 
@@ -29,27 +28,47 @@
 
 <template>
   <div class="article-list">
-      <div v-for="(article, index) in articleStore.articles" :key="article.id" class="article-item" @click="handleOpenArticle(article)">
-        <!-- <p class="title cursor-pointer" @click="handleOpenArticle(article)">{{ article.title }}</p> -->
-        <router-link 
-          class="title cursor-pointer" 
-          :to="{ name: 'article', params: { id: article.id } }"
-        >{{ article.title }}
-      </router-link>
+    <div v-for="(article, index) in articleStore.articles" :key="article.id" class="article-item" @click="handleOpenArticle(article)">
+      <!-- <p class="title cursor-pointer" @click="handleOpenArticle(article)">{{ article.title }}</p> -->
+      <router-link 
+        class="title cursor-pointer" 
+        :to="{ name: 'article', params: { id: article.id } }"
+      >{{ article.title }}</router-link>
 
-        <div class="content" v-html="parseMarkdown(article.content)"></div>
-        <p class="author">作者: {{ article.author }}&nbsp;&nbsp;|&nbsp;&nbsp;发布日期: {{ formatDate(article.publishdate) }}</p>
-      </div>
+      <div class="content" v-html="parseMarkdown(article.content)"></div>
+      <p class="author">作者: {{ article.author }}&nbsp;&nbsp;|&nbsp;&nbsp;发布日期: {{ formatDate(article.publishdate) }}</p>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>  
   .article-list {
-    max-width: calc(100vw - 90px * 2 - 300px - 3.75rem);
-    margin-top: -60rem;
-    margin-right: 3rem;
-    
+    width: 100%;
+    padding: 0 10px;
+
+    @media (max-width: 10000px) {
+      max-width: calc(100vw - var(--sidebar-width) - var(--padding-x) * 6);
+    }
+
+    @media (min-width: 1281px) and (max-width: 1536px) {
+      max-width: calc(100vw - var(--sidebar-width) - var(--padding-x) * 3);
+    }
+
+    @media (min-width: 1025px) and (max-width: 1280px) {
+      max-width: calc(100vw - var(--sidebar-width) - var(--padding-x) * 1);
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      max-width: calc(100vw - var(--sidebar-width) - var(--padding-x));
+    }
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+    }
+
+
     .article-item {
+        max-width: 100%;
         padding: 1.75rem;
         background: var(--bg-dark);
         border-radius: var(--radius-lg);
@@ -59,6 +78,8 @@
         transition: var(--transition-base);
         position: relative;
         overflow: hidden;
+
+        
         
         &::before {
           content: '';
@@ -152,26 +173,5 @@
         }
     }
   }
-  
-  @media (max-width: 768px) {
 
-    .article-list {
-      max-width: 100%;
-      margin: 0;
-      padding: 0 1rem;
-      margin-top: -120rem;
-      
-      .article-item {
-        padding: 1.25rem;
-        
-        .title {
-          font-size: 1.35rem;
-        }
-        
-        .content {
-          font-size: 0.9rem;
-        }
-      }
-    }
-  }
 </style>

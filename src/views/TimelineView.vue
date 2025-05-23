@@ -8,7 +8,7 @@ const input = ref('')
 </script>
 
 <template>
-  <div class="container">
+  <div class="timeline-container">
     <Transition name="fade-slide" appear>
       <div class="content">
         <TimeLineItem class="time-line-item"/>
@@ -18,7 +18,7 @@ const input = ref('')
 </template>
 
 <style lang="scss" scoped>
-  .container {
+  .timeline-container {
     width: 100%;
     height: 100vh;
     position: relative;

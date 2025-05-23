@@ -54,7 +54,7 @@ function updateUptime(startTime) {
 </script>
 
 <template>
-  <div class="sidebar">
+  <div class="sidebar sm:hidden md:block">
     <div class="sidebar-header">
       <img src="../assets/logo.jpg" alt="Profile Picture">
       <p>Forest</p>
@@ -78,11 +78,14 @@ function updateUptime(startTime) {
 
 <style lang="scss" scoped>
 .sidebar {
+  // display: none;
+  width: var(--sidebar-width);
   position: fixed;
   top: 120px;
   left: 90px;
-  width: 300px;
-  padding: 1.5rem;
+  // width: 300px;
+  // padding: 1.5rem;
+  padding-top: .5rem;
   border-radius: var(--radius-lg);
   text-align: center;
   color: var(--text-primary);
@@ -95,6 +98,20 @@ function updateUptime(startTime) {
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @media (max-width: 768px) {
+    left: 0;
+    padding: .5rem;
+    display: none;
+  }
+
+  @media (max-width: 1280px) {
+    left: 10px;
+    padding: .5rem;
+    // width: 200px !important;
+  }
+
+  
 }
 
 .sidebar-header {
@@ -110,6 +127,10 @@ function updateUptime(startTime) {
   transition: var(--transition-base);
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 1280px) {
+    padding: 1rem;
+  }
 
   &::after {
     content: '';
@@ -202,6 +223,10 @@ function updateUptime(startTime) {
   transition: var(--transition-base);
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 1280px) {
+    padding: 1rem;
+  }
 
   &::before {
     content: '';

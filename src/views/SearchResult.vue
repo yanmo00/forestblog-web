@@ -10,7 +10,7 @@ const handleOpenArticle = (article) => {
 </script>
 
 <template>
-  <div class="container">
+  <div class="search-result-container">
     <Transition name="fade-slide" appear>
       <div class="content">
         <SearchResultItem class="search-result-item"/>
@@ -20,7 +20,7 @@ const handleOpenArticle = (article) => {
 </template>
 
 <style lang="scss" scoped>
-  .container {
+  .search-result-container {
     position: relative;
     width: 100%;
     min-height: 100vh;

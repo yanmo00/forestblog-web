@@ -9,7 +9,7 @@ const input = ref('')
 </script>
 
 <template>
-  <div class="container">
+  <div class="view-container">
     <Transition name="fade-slide" appear>
       <div class="content">
         <TagItem class="tag-item"/>
@@ -19,7 +19,7 @@ const input = ref('')
 </template>
 
 <style lang="scss" scoped>
-  .container {
+  .view-container {
     width: 100%;
     position: relative;
     margin-left: 18rem;
