@@ -25,17 +25,12 @@
               </el-icon>
             </div>
             <div class="flex-center gap-5">
-              <div class="flex-center gap-2">
+              <div class="flex-center ">
                 <el-icon><Calendar /></el-icon>
                 <el-icon :size="20">
     <Edit />
   </el-icon>
-  <el-icon color="#409efc" class="no-inherit">
-    <Share />
-  </el-icon>
-  <el-icon>
-    <Delete />
-  </el-icon>
+
                 <div>{{ dayjs(detail.updatedAt).format("YYYY-MM-DD") }}</div>
               </div>
               <div class="flex-center gap-1">
@@ -117,15 +112,15 @@ marked.setOptions({
   position: relative;
   width: 100%;
   height: 92vh;
-  overflow: hidden;
+
 }
 
 .content {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: -0.5rem;
+  left: 11rem;
+  width: 90%;
+  height: 95%;
   will-change: transform, opacity;
 }
 
@@ -135,14 +130,16 @@ marked.setOptions({
   width: 100%;
   height: 100%;
   padding: 2rem;
+
 }
 
 .article {
   height: 100%;
   background: var(--bg-dark);
-  border-radius: var(--radius-lg);
-  width: 100%;
+  border-radius: 15px;
+  width: 90%;
   max-width: 1200px;
+  margin: 0 auto;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -189,7 +186,7 @@ marked.setOptions({
     h1 {
       margin: 0;
       padding: 0 60px;
-      font-size: 2.25rem;
+      font-size: 1.75rem;
       font-weight: 700;
       color: var(--text-primary);
       line-height: 1.4;
@@ -224,16 +221,16 @@ marked.setOptions({
   }
 
   .article-content {
-    padding: 1.5rem 0;
+    padding: 1rem 0;
     max-width: 100%;
     color: var(--text-secondary);
-    line-height: 1.8;
-    font-size: 1.1rem;
+    line-height: 1.6;
+    font-size: 1rem;
 
     :deep(h2) {
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: var(--text-primary);
-      margin: 2.5rem 0 1.5rem;
+      margin: 2rem 0 1rem;
       font-weight: 600;
       position: relative;
       padding-left: 1rem;
@@ -252,9 +249,9 @@ marked.setOptions({
     }
 
     :deep(h3) {
-      font-size: 1.75rem;
+      font-size: 1.25rem;
       color: var(--text-primary);
-      margin: 2rem 0 1.25rem;
+      margin: 1.5rem 0 1rem;
       font-weight: 600;
     }
 
@@ -392,32 +389,46 @@ marked.setOptions({
 
 @media (max-width: 768px) {
   .article {
-    .article-header {
-      padding: 1.5rem 1.5rem 0;
-      
-      h1 {
-        font-size: 1.75rem;
-        padding: 0 50px;
-      }
-      
-      .back-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-      }
+    height: 100%;
+    background: var(--bg-dark);
+    border-radius: 15px;
+    width: 25rem;
+    max-width: 1200px;
+    position: relative;
+    display: flex;
+    left: 6rem;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-base);
+    margin-left: -19rem;
+  }
+
+  .article-header {
+    padding: 1rem 1rem 0;
+    margin-bottom: 1rem;
+
+    h1 {
+      font-size: 1.25rem;
+      padding: 0 40px;
     }
-    
-    .article-content {
-      padding: 1rem 0;
-      font-size: 1rem;
-      
-      :deep(h2) {
-        font-size: 1.75rem;
-      }
-      
-      :deep(h3) {
-        font-size: 1.5rem;
-      }
+
+    .back-btn {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.9rem;
+      left: 0rem;
+      top: 0rem;
     }
+  }
+
+  .scrollbar-wrapper {
+    padding: 0 1rem 1rem;
+  }
+
+  .article-content {
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
   }
 }
 </style>

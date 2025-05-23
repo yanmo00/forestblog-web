@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, computed } from 'vue'
   import { useArticleStore } from '@/stores/article'
   import { User, Calendar } from '@element-plus/icons-vue'
   import router from '@/router'
@@ -11,14 +11,23 @@
 
   onMounted(async () => {
     try {
+      // 确保先获取文章数据
       await articleStore.fetchArticles();
-      articles.value = articleStore.articles.sort((a, b) => 
-        new Date(b.publishdate) - new Date(a.publishdate)
-      );
+      // 检查文章数据是否存在
+      if (articleStore.articles && articleStore.articles.length > 0) {
+        articles.value = articleStore.articles.sort((a, b) => 
+          new Date(b.publishdate) - new Date(a.publishdate)
+        );
+      } else {
+        console.warn('No articles found in store');
+      }
     } catch (error) {
-      console.error('Failed to fetch articles in TimeLineItem.vue:', error);
+      console.error('Failed to fetch articles:', error);
     }
   });
+
+  // 添加一个计算属性来检查是否有文章
+  const hasArticles = computed(() => articles.value.length > 0);
 
   // 方法：格式化日期为年月日格式
   const formatDate = (dateString) => {
@@ -47,6 +56,13 @@
     return colors[index % colors.length];
   };
 
+  // 添加获取时间线项目类型的方法
+  const getTimelineItemType = (index) => {
+    // 根据索引返回不同的类型
+    const types = ['primary', 'success', 'warning', 'danger'];
+    return types[index % types.length];
+  };
+
   const handleArticleClick = (article) => {
     router.push({ name: 'article', params: { id: article.id } });
   };
@@ -66,10 +82,10 @@
       </div>
       
       <div class="timeline-content">
-        <el-timeline>
+        <el-timeline v-if="hasArticles">
           <el-timeline-item
             v-for="(article, index) in articles"
-            :key="index"
+            :key="article.id"
             :type="getTimelineItemType(index)"
             :color="getTimelineItemColor(index)"
             :hollow="hoveredIndex !== index"
@@ -95,6 +111,9 @@
             </div>
           </el-timeline-item>
         </el-timeline>
+        <div v-else class="no-data">
+          <el-empty description="暂无文章数据" />
+        </div>
       </div>
     </div>
   </div>
@@ -102,7 +121,8 @@
 
 <style lang="scss" scoped>
   .timeline-wrapper {
-    min-height: 100vh;
+    width: 100%;
+    height: 100%;
     padding: 2rem;
     display: flex;
     justify-content: center;
@@ -111,53 +131,49 @@
   .timeline-container {
     width: 100%;
     max-width: 1000px;
-    margin-left: 12rem;
-    margin-top: 2rem;
+    margin-left: 14rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 
   .timeline-header {
     text-align: center;
-    margin-bottom: 3rem;
-    padding: 2rem;
+    padding: 1.5rem;
+    margin-left: 5rem;
     background: var(--bg-dark);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-color);
     backdrop-filter: blur(10px);
     transition: var(--transition-base);
-
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--border-hover);
-    }
+    flex-shrink: 0; // 防止header被压缩
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       color: var(--text-primary);
       margin: 0;
       font-weight: 700;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     .subtitle {
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: var(--text-secondary);
-      margin: 1rem 0 0;
+      margin: 0.75rem 0 0;
     }
   }
 
   .timeline-content {
-    padding: 2rem;
+    flex: 1;
+    padding: 1.5rem;
+    margin-left: 5rem;
+
     background: var(--bg-dark);
-    border-radius: var(--radius-lg);
+    border-radius: 10px;
     border: 1px solid var(--border-color);
     backdrop-filter: blur(10px);
     transition: var(--transition-base);
-
-    &:hover {
-      box-shadow: var(--shadow-md);
-      border-color: var(--border-hover);
-    }
+    height: calc(100vh - 300px); // 调整高度，留出header的空间
+    overflow-y: auto;
 
     :deep(.el-timeline) {
       padding: 0;
@@ -174,45 +190,28 @@
       padding: 0.5rem 1rem;
       background: var(--bg-darker);
       border-radius: var(--radius-md);
-      transition: var(--transition-base);
-
-      &:hover {
-        color: var(--primary-color);
-        background: rgba(64, 158, 255, 0.1);
-      }
     }
   }
 
   .timeline-card {
     background: var(--bg-darker);
     border-radius: var(--radius-lg);
-    padding: 1.5rem;
+    padding: 1.25rem;
     border: 1px solid var(--border-color);
     cursor: pointer;
     transition: var(--transition-base);
 
-    &:hover {
-      transform: translateX(8px);
-      border-color: var(--border-hover);
-      box-shadow: var(--shadow-md);
-    }
-
     .article-title {
-      font-size: 1.4rem;
+      font-size: 1.25rem;
       color: var(--text-primary);
-      margin: 0 0 1rem;
+      margin: 0 0 0.75rem;
       font-weight: 600;
-      transition: var(--transition-base);
-
-      &:hover {
-        color: var(--primary-color);
-      }
     }
 
     .article-meta {
       display: flex;
-      gap: 1.5rem;
-      margin-bottom: 1rem;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
       flex-wrap: wrap;
 
       .meta-item {
@@ -221,18 +220,13 @@
         gap: 0.5rem;
         color: var(--text-secondary);
         font-size: 0.9rem;
-
-        .el-icon {
-          font-size: 1.1em;
-          color: var(--primary-color);
-        }
       }
     }
 
     .article-excerpt {
       color: var(--text-secondary);
       font-size: 0.95rem;
-      line-height: 1.6;
+      line-height: 1.5;
       margin: 0;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -262,6 +256,8 @@
     .timeline-header {
       padding: 1.5rem;
       margin-bottom: 2rem;
+      margin-left: -1.5rem;
+      width: 100%;
 
       h1 {
         font-size: 2rem;
@@ -270,6 +266,9 @@
 
     .timeline-content {
       padding: 1.5rem;
+      width: 100%;
+      margin-left: -1.5rem;
+
     }
 
     .timeline-card {
@@ -278,6 +277,35 @@
       .article-title {
         font-size: 1.25rem;
       }
+    }
+  }
+
+  .no-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    background: var(--bg-darker);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+
+  // 自定义滚动条样式
+  .timeline-content::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .timeline-content::-webkit-scrollbar-track {
+    background: var(--bg-darker);
+    border-radius: 4px;
+  }
+
+  .timeline-content::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+    
+    &:hover {
+      background: var(--primary-color);
     }
   }
 </style>

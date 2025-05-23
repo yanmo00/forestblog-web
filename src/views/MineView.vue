@@ -48,8 +48,8 @@ import { Message, Link } from '@element-plus/icons-vue'
 .mine-container {
   width: 100%;
   max-width: 1200px;
-  margin-left: 12rem;
-  margin-top: 2rem;
+  margin-left: 18rem;
+  margin-top: 0rem;
 }
 
 .profile-section {
@@ -242,5 +242,12 @@ import { Message, Link } from '@element-plus/icons-vue'
   .content-card {
     padding: 1.5rem;
   }
+  
+  .profile-section{
+    margin-left: -12rem;
+    width: 190%;
+  }  
+
+
 }
 </style>

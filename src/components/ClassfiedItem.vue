@@ -156,7 +156,6 @@
   .article-list {
     max-width: 100%;
     margin: 1rem;
-    margin-top: -60rem;
     
     .article-item {
       padding: 1.25rem;

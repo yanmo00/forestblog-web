@@ -50,4 +50,18 @@ const input = ref('')
     opacity: 1;
     transform: translateY(0);
   }
+
+  @media (max-width: 768px) {
+    .demo-tabs[data-v-80768b4b] {
+        margin-left: -17.5rem;
+        padding: 1rem;
+        width: 100%;
+    }
+    .demo-tabs[data-v-80768b4b][data-v-53f00473] {
+        margin-left: -17.5rem;
+        padding: 1rem;
+        width: 70%;
+    }
+    
+}
 </style>

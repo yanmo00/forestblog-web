@@ -22,27 +22,25 @@ const handleOpenArticle = (article) => {
 <style lang="scss" scoped>
   .container {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding-top: 60px;
     width: 100%;
     min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
   }
 
   .content {
     width: 100%;
+    max-width: 1200px;
+    margin-left: 14rem;
     position: relative;
     z-index: 1;
   }
 
   .search-result-item {
     position: relative;
-    left: 3rem;
-    top: 60rem;
     width: 100%;
     box-sizing: border-box;
-    padding-top: 30rem;
   }
 
   .fade-slide-enter-active,

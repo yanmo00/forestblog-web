@@ -20,22 +20,23 @@ const input = ref('')
 <style lang="scss" scoped>
   .container {
     width: 100%;
-    height: 100%;
-    position: absolute;
-    min-height: 100vh;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
   }
 
   .content {
     width: 100%;
+    height: 100%;
     position: relative;
     z-index: 1;
   }
 
   .time-line-item {
     position: relative;
-    top: 13rem;
-    left: 22.5rem;
-    height: 120%;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
     box-sizing: border-box;
   }
 
