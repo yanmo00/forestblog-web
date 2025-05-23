@@ -16,7 +16,8 @@ const input = ref('')
 const links = [
   { text: '主页', to: '/home' },
   { text: '分类', to: '/classification' },
-  { text: '时间线', to: '/timeline' }
+  { text: '归档', to: '/timeline' },
+  { text: '我的', to: '/mine' },
 ]
 
 const handleSearch = () => {

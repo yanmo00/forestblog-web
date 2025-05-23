@@ -34,7 +34,9 @@
         <router-link 
           class="title cursor-pointer" 
           :to="{ name: 'article', params: { id: article.id } }"
-        >{{ article.title }}</router-link>
+        >{{ article.title }}
+      </router-link>
+
         <div class="content" v-html="parseMarkdown(article.content)"></div>
         <p class="author">作者: {{ article.author }}&nbsp;&nbsp;|&nbsp;&nbsp;发布日期: {{ formatDate(article.publishdate) }}</p>
       </div>
@@ -43,47 +45,131 @@
 
 <style lang="scss" scoped>  
   .article-list {
-    // 100vw - padding - sideBarWidth - gap-15
     max-width: calc(100vw - 90px * 2 - 300px - 3.75rem);
-    margin-top: -92rem;
+    margin-top: -60rem;
     margin-right: 3rem;
     
     .article-item {
-        // width:80rem;
-        padding: 10px;
-        background-color: rgba(0, 0, 0, 0.8);
-        border-radius: 15px;
-        margin-top: 1rem;     
-        // margin-left: 25rem;
-        padding-left: 2rem;
+        padding: 1.75rem;
+        background: var(--bg-dark);
+        border-radius: var(--radius-lg);
+        margin-top: 1.5rem;
+        border: 1px solid var(--border-color);
+        backdrop-filter: blur(10px);
+        transition: var(--transition-base);
+        position: relative;
+        overflow: hidden;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 4px;
+          height: 100%;
+          background: var(--primary-color);
+          opacity: 0;
+          transition: var(--transition-base);
+        }
+        
+        &:hover {
+          transform: translateY(-4px);
+          box-shadow: var(--shadow-md);
+          border-color: var(--border-hover);
+          
+          &::before {
+            opacity: 1;
+          }
+          
+          .title {
+            color: var(--primary-color);
+          }
+        }
 
         .title {
           font-size: 1.5rem;
-          color: white;
+          color: var(--text-primary);
+          font-weight: 600;
+          margin-bottom: 1rem;
+          display: block;
+          transition: var(--transition-base);
+          line-height: 1.4;
+          
+          &:hover {
+            color: var(--primary-hover);
+          }
         }
 
         .content {
-            font-size: 0.75rem;
-            color: #ccc;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
             display: -webkit-box;
-            -webkit-line-clamp: 3; /* 限制为三行 */
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
-            line-clamp: 3; /* 标准属性 */
             overflow: hidden;
             text-overflow: ellipsis;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            
+            :deep(p) {
+              margin: 0;
+            }
+            
+            :deep(code) {
+              background: var(--bg-darker);
+              padding: 0.2rem 0.4rem;
+              border-radius: var(--radius-sm);
+              font-family: 'Fira Code', monospace;
+              font-size: 0.9em;
+            }
         }
       
-        .author {
-            font-size: 0.9rem;
-            display: inline;
-            color: #ccc;
+        .author, .date {
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-secondary);
+            transition: var(--transition-base);
+            
+            .el-icon {
+              margin-right: 0.5rem;
+              font-size: 1.1em;
+            }
         }
+        
+        .author {
+          margin-right: 1rem;
+          
+          &:hover {
+            color: var(--primary-color);
+          }
+        }
+        
         .date {
-            font-size: 0.9rem;
-            display: inline;
-            color: #ccc;
-        }                                          
+          &:hover {
+            color: var(--primary-color);
+          }
+        }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .article-list {
+      max-width: 100%;
+      margin: 1rem;
+      margin-top: -60rem;
+      
+      .article-item {
+        padding: 1.25rem;
+        
+        .title {
+          font-size: 1.35rem;
+        }
+        
+        .content {
+          font-size: 0.9rem;
+        }
+      }
     }
   }
 </style>

@@ -21,7 +21,7 @@ onMounted(async () => {
 
 <template>
   <HeaderItem class="header-item" />
-  <div class="w-100vw pt-120px px-90px flex gap--50 overflow-x-hidden">
+  <div class="w-100vw pt-120px px-90px flex gap--50">
     <SideBarItem class="w-300px" />
     <RouterView class="flex-1" />
   </div>

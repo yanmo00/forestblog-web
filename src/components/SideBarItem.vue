@@ -78,63 +78,200 @@ function updateUptime(startTime) {
 
 <style lang="scss" scoped>
 .sidebar {
-  max-width: 20rem; // 设置最大宽度
-  padding: 1rem; // 使用 rem 单位
-  border-radius: 1rem; // 使用 rem 单位
+  position: fixed;
+  top: 120px;
+  left: 90px;
+  width: 300px;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
   text-align: center;
-  color: white;
+  color: var(--text-primary);
+  transition: var(--transition-base);
+  z-index: 100;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .sidebar-header {
-  background-color: #000000;
-  border-radius: 1rem; // 使用 rem 单位
+  background: var(--bg-dark);
+  border-radius: var(--radius-lg);
   text-align: center;
-  color: white;
-  margin-top: 5rem;
-  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  transition: var(--transition-base);
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-hover));
+    opacity: 0;
+    transition: var(--transition-base);
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-hover);
+
+    &::after {
+      opacity: 1;
+    }
+
+    img {
+      transform: scale(1.05) rotate(5deg);
+    }
+  }
 
   img {
-    padding-top: 1rem;
-    max-width: 100px; // 设置最大宽度
-    height: auto; // 自动调整高度
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    margin-bottom: 1rem; // 使用 rem 单位
+    margin-bottom: 1.5rem;
+    transition: var(--transition-base);
+    border: 3px solid var(--border-color);
+    padding: 0.5rem;
+    background: var(--bg-darker);
+    object-fit: cover;
+
+    &:hover {
+      border-color: var(--primary-color);
+    }
+  }
+
+  p {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .title, .value {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border-color);
   }
 
-  .title p, .value p {
-    margin: 0.5rem 0; // 使用 rem 单位
+  .title p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+    transition: var(--transition-base);
+    font-weight: normal;
+
+    &:hover {
+      color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+  }
+
+  .value p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 }
 
 .sidebar-center {
-  padding: 0.5rem;
-  background-color: #000;
-  border-radius: 1rem; // 使用 rem 单位
+  padding: 2rem;
+  background: var(--bg-dark);
+  border-radius: var(--radius-lg);
   text-align: center;
-  opacity: 0.8;
-  color: white;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  transition: var(--transition-base);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-hover));
+    opacity: 0;
+    transition: var(--transition-base);
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-hover);
+
+    &::before {
+      opacity: 1;
+    }
+
+    span {
+      color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+  }
 
   span {
     display: block;
-    margin: 0.5rem 0; // 使用 rem 单位
+    margin: 1rem 0;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    transition: var(--transition-base);
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-darker);
+
+    &:hover {
+      background: rgba(64, 158, 255, 0.1);
+    }
   }
 }
 
-// 媒体查询
 @media (max-width: 768px) {
   .sidebar {
-    width: 95%; // 在小屏幕上增加宽度
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 95%;
+    margin: 1rem auto;
+    max-height: none;
   }
 
-  .sidebar-header img {
-    width: 60%; // 在小屏幕上增加图片宽度
+  .sidebar-header {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    
+    img {
+      width: 100px;
+      height: 100px;
+    }
+
+    p {
+      font-size: 1.5rem;
+    }
+  }
+
+  .sidebar-center {
+    padding: 1.5rem;
   }
 }
 </style>

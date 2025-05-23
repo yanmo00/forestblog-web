@@ -26,6 +26,7 @@ const input = ref('')
     align-items: flex-end;
     padding-top: 60px;
     width: 100%;
+    margin-left: 18rem;
     min-height: 100vh;
   }
 
@@ -38,7 +39,7 @@ const input = ref('')
   .article-item {
     position: relative;
     left: 3rem;
-    top: 60rem;
+    top: 27rem;
     width: 100%;
     box-sizing: border-box;
     padding-top: 30rem;

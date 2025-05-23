@@ -22,6 +22,7 @@ const input = ref('')
   .container {
     width: 100%;
     position: relative;
+    margin-left: 18rem;
     min-height: 100vh;
   }
 
